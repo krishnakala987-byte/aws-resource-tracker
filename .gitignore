@@ -1,0 +1,24 @@
+# Log Files
+*.log
+
+# Temporary Files
+*.tmp
+
+# Environment Files
+.env
+
+# VS Code Settings
+.vscode/
+
+# Linux System Files
+.DS_Store
+
+# Python Cache
+__pycache__/
+
+# AWS Credentials Backup Files
+*.pem
+
+# Terraform Files
+*.tfstate
+*.tfstate.backup
