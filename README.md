@@ -1,81 +1,72 @@
-# AWS Resource Tracker
+<div align="center">
 
-A professional DevOps automation project built using **Bash scripting** and **AWS CLI** to track and monitor AWS cloud resources directly from the terminal.
+#  AWS Resource Tracker
 
-This project was created to improve cloud infrastructure visibility, automate resource tracking, and strengthen real-world DevOps scripting skills using AWS services.
+**A DevOps automation tool to monitor and track AWS cloud resources directly from your terminal**
 
----
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Bash](https://img.shields.io/badge/Bash-Scripting-4EAA25?logo=gnubash&logoColor=white)](https://www.gnu.org/software/bash/)
+[![AWS CLI](https://img.shields.io/badge/AWS-CLI-FF9900?logo=amazonaws&logoColor=white)](https://aws.amazon.com/cli/)
+[![Linux](https://img.shields.io/badge/Linux-Compatible-FCC624?logo=linux&logoColor=black)](https://www.linux.org/)
+[![Shell](https://img.shields.io/badge/Shell-Script-89e051)](https://en.wikipedia.org/wiki/Shell_script)
 
-# Project Overview
+*Built to improve cloud infrastructure visibility and automate resource tracking using Bash and AWS CLI.*
 
-Managing AWS infrastructure manually becomes difficult as cloud resources increase.
-
-This automation tool helps DevOps engineers quickly fetch and track AWS resources such as:
-
-- EC2 Instances
-- S3 Buckets
-- IAM Users
-- Lambda Functions
-- RDS Databases
-- EBS Volumes
-- CloudFormation Stacks
-
-The script validates AWS CLI installation, verifies AWS authentication, handles invalid inputs, and displays AWS resource information in a clean terminal interface.
+</div>
 
 ---
 
-# Features
+##  Overview
 
-- AWS CLI validation
-- AWS authentication verification
-- Multi-service AWS resource tracking
-- Colored terminal output
-- Error handling and validation
-- Empty resource handling
-- Professional Bash scripting structure
-- Modular reusable functions
-- Case statement-based service selection
-- Infrastructure visibility automation
-- Beginner-friendly DevOps project structure
+Managing AWS infrastructure manually becomes increasingly difficult as cloud resources grow. **AWS Resource Tracker** is a lightweight Bash automation tool that gives DevOps engineers instant visibility into their AWS environment — no console login required.
+
+Run a single command from your terminal to fetch, validate, and display any AWS resource in a clean, color-coded output.
+
+```bash
+./aws_resource_tracker.sh us-east-1 ec2
+```
 
 ---
 
-# Supported AWS Services
+##  Features
 
-| AWS Service | Purpose |
-|---|---|
-| EC2 | Track virtual machines |
-| S3 | Track storage buckets |
-| IAM | Track IAM users |
-| Lambda | Track serverless functions |
-| RDS | Track managed databases |
-| EBS | Track storage volumes |
-| CloudFormation | Track infrastructure stacks |
-
----
-
-# Technologies Used
-
-- Bash Scripting
-- Linux
-- AWS CLI
-- Git & GitHub
-- AWS Cloud Services
+- ✅ **AWS CLI validation** — auto-checks if AWS CLI is installed before running
+- ✅ **Authentication verification** — validates AWS credentials are configured
+- ✅ **7 supported AWS services** — EC2, S3, IAM, Lambda, RDS, EBS, CloudFormation
+- ✅ **Colored terminal output** — clear, human-readable formatting
+- ✅ **Robust error handling** — graceful messages for invalid inputs & empty resources
+- ✅ **Modular function design** — clean, reusable Bash functions per service
+- ✅ **Case-statement service routing** — fast, extensible service selection engine
+- ✅ **Zero dependencies** — only requires Bash and AWS CLI
 
 ---
 
-# Project Structure
+##  Supported AWS Services
 
-```text
+| Service | Command Keyword | What It Tracks |
+|---|---|---|
+| EC2 | `ec2` | Virtual machine instances |
+| S3 | `s3` | Storage buckets |
+| IAM | `iam` | Users and access identities |
+| Lambda | `lambda` | Serverless functions |
+| RDS | `rds` | Managed relational databases |
+| EBS | `ebs` | Block storage volumes |
+| CloudFormation | `cloudformation` | Infrastructure stacks |
+
+---
+
+##  Project Structure
+
+```
 aws-resource-tracker/
 │
 ├── scripts/
-│   └── aws_resource_tracker.sh
+│   └── aws_resource_tracker.sh    # Core tracking script
 │
-├── screenshots/
+├── screenshots/                   # Terminal output screenshots
 │
 ├── docs/
-│   └── project-explanation.md
+│   └── project-explanation.md     # Detailed project walkthrough
 │
 ├── README.md
 ├── LICENSE
@@ -84,137 +75,124 @@ aws-resource-tracker/
 
 ---
 
-# Workflow Architecture
+##  How It Works
 
-```text
-User Input
-     ↓
-Input Validation
-     ↓
-AWS CLI Validation
-     ↓
-AWS Authentication Validation
-     ↓
-Service Selection Engine
-     ↓
-AWS Resource Fetching Functions
-     ↓
-Formatted Output Display
+```
+User Input (region + service)
+         │
+         ▼
+  Input Validation
+  (argument count check)
+         │
+         ▼
+  AWS CLI Check
+  (is it installed?)
+         │
+         ▼
+  Auth Validation
+  (are credentials configured?)
+         │
+         ▼
+  Service Selection Engine
+  (case-statement routing)
+         │
+         ▼
+  AWS Resource Fetch
+  (per-service function call)
+         │
+         ▼
+  Formatted Output Display
 ```
 
 ---
 
-# Installation & Setup
+##  Getting Started
 
-## Step 1 — Clone Repository
+### Prerequisites
 
-```bash
-git clone https://github.com/YOUR-USERNAME/aws-resource-tracker.git
-```
+- Linux / macOS terminal
+- [AWS CLI v2](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) installed
+- AWS account with appropriate IAM read permissions
+- Git
 
 ---
 
-## Step 2 — Navigate Into Project
+### Step 1 — Clone the Repository
 
 ```bash
+git clone https://github.com/krishnakala987-byte/aws-resource-tracker.git
 cd aws-resource-tracker/scripts
 ```
 
----
-
-## Step 3 — Give Execute Permission
+### Step 2 — Grant Execute Permission
 
 ```bash
 chmod +x aws_resource_tracker.sh
 ```
 
----
-
-## Step 4 — Configure AWS CLI
+### Step 3 — Configure AWS CLI
 
 ```bash
 aws configure
 ```
 
-You will be asked for:
+You'll be prompted for:
 
-- AWS Access Key
-- AWS Secret Access Key
-- Default Region
-- Output Format
+| Field | Example |
+|---|---|
+| AWS Access Key ID | `AKIAIOSFODNN7EXAMPLE` |
+| AWS Secret Access Key | `wJalrXUtnFEMI/K7MDENG/...` |
+| Default Region | `us-east-1` |
+| Output Format | `json` |
 
 ---
 
-# Usage
+##  Usage
 
-## Track EC2 Instances
+**Syntax:**
+```bash
+./aws_resource_tracker.sh <region> <service>
+```
+
+**Examples:**
 
 ```bash
+# Track EC2 Instances
 ./aws_resource_tracker.sh us-east-1 ec2
-```
 
----
-
-## Track S3 Buckets
-
-```bash
+# Track S3 Buckets
 ./aws_resource_tracker.sh us-east-1 s3
-```
 
----
-
-## Track IAM Users
-
-```bash
+# Track IAM Users
 ./aws_resource_tracker.sh us-east-1 iam
-```
 
----
-
-## Track Lambda Functions
-
-```bash
+# Track Lambda Functions
 ./aws_resource_tracker.sh us-east-1 lambda
-```
 
----
-
-## Track RDS Databases
-
-```bash
+# Track RDS Databases
 ./aws_resource_tracker.sh us-east-1 rds
-```
 
----
-
-## Track EBS Volumes
-
-```bash
+# Track EBS Volumes
 ./aws_resource_tracker.sh us-east-1 ebs
-```
 
----
-
-## Track CloudFormation Stacks
-
-```bash
+# Track CloudFormation Stacks
 ./aws_resource_tracker.sh us-east-1 cloudformation
 ```
 
 ---
 
-# Example Output
+##  Example Output
 
-```text
+```
 ==========================================================
               AWS RESOURCE TRACKER TOOL
 ==========================================================
 
-SUCCESS: AWS CLI is installed.
-SUCCESS: AWS CLI is configured properly.
+✔ SUCCESS: AWS CLI is installed.
+✔ SUCCESS: AWS CLI is configured properly.
 
-Region  : us-east-1
-Service : ec2
+  Region  : us-east-1
+  Service : ec2
 
 Fetching EC2 instances...
 
@@ -227,150 +205,87 @@ AWS Resource Tracking Completed Successfully.
 
 ---
 
-# Error Handling
+##  Error Handling
 
-The script handles multiple failure scenarios professionally.
+The script handles all common failure scenarios clearly:
 
-## Invalid Arguments
+| Scenario | Error Message |
+|---|---|
+| No arguments provided | `ERROR: Invalid number of arguments provided.` |
+| Unsupported service name | `ERROR: Invalid AWS service provided.` |
+| AWS CLI not installed | `ERROR: AWS CLI is not installed.` |
+| AWS credentials not configured | `ERROR: AWS CLI is not configured properly.` |
+| No resources found | Clean "No resources found" message |
+
+**Examples:**
 
 ```bash
+# Missing arguments
 ./aws_resource_tracker.sh
-```
+# ERROR: Invalid number of arguments provided.
 
-Output:
-
-```text
-ERROR: Invalid number of arguments provided.
-```
-
----
-
-## Invalid AWS Service
-
-```bash
+# Unsupported service
 ./aws_resource_tracker.sh us-east-1 mongodb
-```
-
-Output:
-
-```text
-ERROR: Invalid AWS service provided.
+# ERROR: Invalid AWS service provided.
 ```
 
 ---
 
-## AWS CLI Not Installed
+##  Technologies Used
 
-```text
-ERROR: AWS CLI is not installed.
-```
-
----
-
-## AWS Authentication Failure
-
-```text
-ERROR: AWS CLI is not configured properly.
-```
+| Technology | Purpose |
+|---|---|
+| **Bash** | Core scripting language |
+| **AWS CLI** | Fetching AWS resource data |
+| **Linux** | Script execution environment |
+| **Git & GitHub** | Version control & hosting |
 
 ---
 
-# DevOps Concepts Used
+##  Roadmap
 
-This project demonstrates practical DevOps concepts such as:
+Planned enhancements for future versions:
 
-- Infrastructure Automation
-- Bash Scripting
-- Linux Permissions
-- AWS CLI Automation
-- Cloud Resource Monitoring
-- Input Validation
-- Error Handling
-- Defensive Programming
-- Modular Scripting
-- Infrastructure Visibility
-- Cloud Operations
+- [ ] Logging system — save output to timestamped log files
+- [ ] Multi-region scanning — scan all regions in one command
+- [ ] Slack / SNS notifications — alert on resource changes
+- [ ] CloudWatch integration — metric-based tracking
+- [ ] Docker containerization — portable, no-install setup
+- [ ] CI/CD pipeline — auto-run on schedule via GitHub Actions
+- [ ] Cost optimization reports — flag idle/unused resources
+- [ ] Interactive menu UI — guided terminal interface for non-CLI users
 
 ---
 
-# Learning Outcomes
+##  Contributing
 
-Through this project I learned:
+Contributions are welcome! Here's how:
 
-- Real-world Bash scripting
-- AWS CLI usage
-- AWS authentication workflows
-- Linux command execution
-- Shell scripting best practices
-- Function-based scripting
-- Case statement implementation
-- Error handling techniques
-- AWS infrastructure visibility concepts
-- Git & GitHub project management
+1. Fork the repository
+2. Create a feature branch — `git checkout -b feature/your-feature`
+3. Commit your changes — `git commit -m 'feat: add your feature'`
+4. Push to the branch — `git push origin feature/your-feature`
+5. Open a Pull Request
+
+Please follow [Conventional Commits](https://www.conventionalcommits.org/) for commit messages.
 
 ---
 
-# Future Improvements
+##  License
 
-Future enhancements planned for this project:
-
-- Logging system
-- Multi-region scanning
-- Slack notifications
-- CloudWatch integration
-- Docker containerization
-- CI/CD pipeline integration
-- Cost optimization reports
-- Interactive menu-based UI
+This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-# Why This Project Matters
+##  Author
 
-This project simulates a real-world DevOps automation use case where cloud engineers need quick visibility into AWS infrastructure resources.
+**Krishna Kala**  
+*Aspiring DevOps & Cloud Engineer*
 
-It demonstrates practical knowledge of:
-
-- Linux
-- AWS
-- Bash scripting
-- Automation
-- Infrastructure monitoring
-- DevOps engineering workflows
+[![GitHub](https://img.shields.io/badge/GitHub-krishnakala987--byte-181717?logo=github)](https://github.com/krishnakala987-byte)
 
 ---
 
-# Screenshots
-
-## EC2 Resource Tracking
-
-(Add screenshot here)
-
----
-
-## S3 Bucket Tracking
-
-(Add screenshot here)
-
----
-
-## Invalid Service Validation
-
-(Add screenshot here)
-
----
-
-# Author
-
-## Krishna Kala
-
-Aspiring DevOps & Cloud Engineer
-
-Passionate about:
-- Cloud Computing
-- DevOps Automation
-- Linux
-- AWS
-- Infrastructure Engineering
-
----
+<div align="center">
+<sub> If this project helped you, consider giving it a star on GitHub!</sub>
+</div>
