@@ -1,0 +1,35 @@
+name: Scheduled AWS Resource Report
+
+# Cron-based reporting: runs a full AWS resource report on a schedule
+# and saves the structured logs as a downloadable artifact.
+on:
+  schedule:
+    - cron: '0 6 * * *'      # every day at 06:00 UTC
+  workflow_dispatch: {}       # also allow manual runs from the Actions tab
+
+jobs:
+  aws-resource-report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Run AWS Resource Tracker (full report)
+        run: |
+          chmod +x scripts/aws_resource_tracker.sh
+          ./scripts/aws_resource_tracker.sh us-east-1 all
+
+      - name: Upload structured logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: aws-resource-report-logs
+          path: scripts/logs/*.log
+          retention-days: 30
+
